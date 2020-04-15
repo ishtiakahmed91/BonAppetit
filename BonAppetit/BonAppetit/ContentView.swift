@@ -10,12 +10,32 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        TabView {
+            FoodItemListView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "heart")
+                            .renderingMode(.original)
+                        Text(verbatim: "Foods")
+                    }
+            }.tag(1)
+
+            OrderView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "cart")
+                            .renderingMode(.original)
+                        Text(verbatim: "Order")
+                    }
+            }.tag(2)
+        }
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+#endif

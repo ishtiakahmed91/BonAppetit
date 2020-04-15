@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD89EA032447905800E9F9D8 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA022447905800E9F9D8 /* OrderView.swift */; };
 		DD8D4AC22445403F00726D90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC12445403F00726D90 /* AppDelegate.swift */; };
 		DD8D4AC42445403F00726D90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC32445403F00726D90 /* SceneDelegate.swift */; };
 		DD8D4AC62445403F00726D90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC52445403F00726D90 /* ContentView.swift */; };
 		DD8D4AC82445404000726D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD8D4AC72445404000726D90 /* Assets.xcassets */; };
 		DD8D4ACB2445404000726D90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD8D4ACA2445404000726D90 /* Preview Assets.xcassets */; };
 		DD8D4ACE2445404000726D90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD8D4ACC2445404000726D90 /* LaunchScreen.storyboard */; };
+		DD8D4ADC244639AE00726D90 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4ADB244639AE00726D90 /* FoodItem.swift */; };
+		DD8D4ADE2446501300726D90 /* FoodItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4ADD2446501300726D90 /* FoodItemListView.swift */; };
+		DD8D4AE0244653B100726D90 /* FoodItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4ADF244653B100726D90 /* FoodItemRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD89EA022447905800E9F9D8 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		DD8D4ABE2445403F00726D90 /* BonAppetit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonAppetit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8D4AC12445403F00726D90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD8D4AC32445403F00726D90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,9 @@
 		DD8D4ACA2445404000726D90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD8D4ACD2445404000726D90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD8D4ACF2445404000726D90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD8D4ADB244639AE00726D90 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		DD8D4ADD2446501300726D90 /* FoodItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemListView.swift; sourceTree = "<group>"; };
+		DD8D4ADF244653B100726D90 /* FoodItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 		DD8D4AC02445403F00726D90 /* BonAppetit */ = {
 			isa = PBXGroup;
 			children = (
+				DD8D4AD6244545BB00726D90 /* Scenes */,
+				DD8D4AD5244544B400726D90 /* Models */,
 				DD8D4AC12445403F00726D90 /* AppDelegate.swift */,
 				DD8D4AC32445403F00726D90 /* SceneDelegate.swift */,
 				DD8D4AC52445403F00726D90 /* ContentView.swift */,
@@ -73,6 +83,48 @@
 				DD8D4ACA2445404000726D90 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DD8D4AD5244544B400726D90 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD8D4ADB244639AE00726D90 /* FoodItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD8D4AD6244545BB00726D90 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DD8D4AD9244545EC00726D90 /* Order */,
+				DD8D4AD8244545E200726D90 /* Details */,
+				DD8D4AD7244545CB00726D90 /* List */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DD8D4AD7244545CB00726D90 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				DD8D4ADD2446501300726D90 /* FoodItemListView.swift */,
+				DD8D4ADF244653B100726D90 /* FoodItemRowView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		DD8D4AD8244545E200726D90 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		DD8D4AD9244545EC00726D90 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				DD89EA022447905800E9F9D8 /* OrderView.swift */,
+			);
+			path = Order;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD8D4AE0244653B100726D90 /* FoodItemRowView.swift in Sources */,
+				DD8D4ADC244639AE00726D90 /* FoodItem.swift in Sources */,
 				DD8D4AC22445403F00726D90 /* AppDelegate.swift in Sources */,
 				DD8D4AC42445403F00726D90 /* SceneDelegate.swift in Sources */,
+				DD89EA032447905800E9F9D8 /* OrderView.swift in Sources */,
 				DD8D4AC62445403F00726D90 /* ContentView.swift in Sources */,
+				DD8D4ADE2446501300726D90 /* FoodItemListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
