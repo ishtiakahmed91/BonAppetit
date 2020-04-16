@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DD89EA032447905800E9F9D8 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA022447905800E9F9D8 /* OrderView.swift */; };
+		DD89EA052447973D00E9F9D8 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA042447973D00E9F9D8 /* DetailsView.swift */; };
+		DD89EA0724483FC100E9F9D8 /* TextInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA0624483FC100E9F9D8 /* TextInCircleView.swift */; };
 		DD8D4AC22445403F00726D90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC12445403F00726D90 /* AppDelegate.swift */; };
 		DD8D4AC42445403F00726D90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC32445403F00726D90 /* SceneDelegate.swift */; };
 		DD8D4AC62445403F00726D90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AC52445403F00726D90 /* ContentView.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		DD89EA022447905800E9F9D8 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		DD89EA042447973D00E9F9D8 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		DD89EA0624483FC100E9F9D8 /* TextInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInCircleView.swift; sourceTree = "<group>"; };
 		DD8D4ABE2445403F00726D90 /* BonAppetit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonAppetit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8D4AC12445403F00726D90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD8D4AC32445403F00726D90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		DD8D4AD8244545E200726D90 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				DD89EA042447973D00E9F9D8 /* DetailsView.swift */,
+				DD89EA0624483FC100E9F9D8 /* TextInCircleView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -203,7 +209,9 @@
 				DD8D4AC22445403F00726D90 /* AppDelegate.swift in Sources */,
 				DD8D4AC42445403F00726D90 /* SceneDelegate.swift in Sources */,
 				DD89EA032447905800E9F9D8 /* OrderView.swift in Sources */,
+				DD89EA052447973D00E9F9D8 /* DetailsView.swift in Sources */,
 				DD8D4AC62445403F00726D90 /* ContentView.swift in Sources */,
+				DD89EA0724483FC100E9F9D8 /* TextInCircleView.swift in Sources */,
 				DD8D4ADE2446501300726D90 /* FoodItemListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

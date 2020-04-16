@@ -14,51 +14,53 @@ struct FoodItemRowView: View {
     @ObservedObject var foodItem: FoodItem
 
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(verbatim: foodItem.title)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+        NavigationLink(destination: DetailsView(foodItem: foodItem)) {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(verbatim: foodItem.title)
+                        .font(.largeTitle)
+                        .fontWeight(.thin)
 
-                Spacer()
-                
-                Text(verbatim: "\(foodItem.price) €")
-                    .font(.headline)
-                    .fontWeight(.bold)
-            }
-            .padding(.top, 30)
+                    Spacer()
 
-            Image(foodItem.imageName)
-                .resizable()
-                .cornerRadius(30)
-                .frame(height: 600)
-                .clipped()
-
-
-            HStack {
-                Image(systemName: "person.crop.square")
-                .renderingMode(.original)
-
-                Text(verbatim: "\(foodItem.amount) serving")
-                    .font(.body)
-                    .fontWeight(.bold)
-
-                Spacer()
-
-                Picker("Reaction", selection: $foodItem.reaction) {
-                    ForEach(Reaction.allCases, id: \.self) { reaction in
-                        Text(reaction.rawValue).tag(reaction)
-                    }
+                    Text(verbatim: "\(foodItem.price) €")
+                        .font(.title)
+                        .fontWeight(.thin)
+                        .foregroundColor(.orange)
                 }
-                .pickerStyle(SegmentedPickerStyle())
+                .padding(.top, 10)
+
+                Image(foodItem.imageName)
+                    .resizable()
+                    .cornerRadius(20)
+                    .frame(height: 600)
+                    .clipped()
+                    .padding(.top, -10)
+
+                HStack {
+                    Image(systemName: "person.crop.square")
+                        .foregroundColor(.orange)
+
+                    Text(verbatim: "\(foodItem.amount) serving")
+                        .font(.body)
+                        .fontWeight(.bold)
+
+                    Spacer()
+
+                    Picker("Reaction", selection: $foodItem.reaction) {
+                        ForEach(Reaction.allCases, id: \.self) { reaction in
+                            Text(reaction.rawValue).tag(reaction)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                .padding(.bottom)
             }
-            .padding(.bottom)
         }
     }
 }
 
 struct FoodItemRowView_Previews: PreviewProvider {
-
     static var bindingFoodItem = FoodItem.demoFoodItems.randomElement()!
     static var previews: some View {
         FoodItemRowView(foodItem: bindingFoodItem)

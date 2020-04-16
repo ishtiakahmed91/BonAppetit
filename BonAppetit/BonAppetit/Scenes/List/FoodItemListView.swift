@@ -18,6 +18,7 @@ struct FoodItemListView: View {
             List {
                 Toggle(isOn: $isFilteringFoodItems) {
                     Text(verbatim: "Show loved foods")
+                        .foregroundColor(.orange)
                 }
 
                 ForEach(foodItems) { foodItem in
