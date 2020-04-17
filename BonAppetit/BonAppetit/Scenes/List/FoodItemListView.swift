@@ -26,11 +26,24 @@ struct FoodItemListView: View {
                         FoodItemRowView(foodItem: foodItem)
                     }
                 }
+                .buttonStyle(BorderlessButtonStyle())
             }
             .navigationBarTitle(Text(verbatim: "Bon Appetit"))
+            .navigationBarItems(
+                trailing: Button(action: {
+                    // Actions
+                }, label: {
+                    HStack {
+                        Image(systemName: "bag")
+                        Text("1")
+                    }
+                })
+            )
         }
+
     }
 }
+
 
 struct FoodItemListUIView_Previews: PreviewProvider {
     static var previews: some View {

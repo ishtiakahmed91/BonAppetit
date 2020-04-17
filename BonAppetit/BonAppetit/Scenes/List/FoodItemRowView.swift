@@ -27,6 +27,13 @@ struct FoodItemRowView: View {
                         .font(.title)
                         .fontWeight(.thin)
                         .foregroundColor(.orange)
+
+                    Button(action: {
+                        self.addToCart()
+                    }, label: {
+                        Image(systemName: "cart.badge.plus")
+                            .renderingMode(.original)
+                    })
                 }
                 .padding(.top, 10)
 
@@ -57,6 +64,11 @@ struct FoodItemRowView: View {
                 .padding(.bottom)
             }
         }
+    }
+
+    func addToCart() {
+        print("\(self.foodItem.title) added")
+        
     }
 }
 
