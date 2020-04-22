@@ -12,9 +12,10 @@ import Combine
 struct FoodItemRowView: View {
 
     @ObservedObject var foodItem: FoodItem
+    @EnvironmentObject var foodCartHolder: FoodCartHolder
 
     var body: some View {
-        NavigationLink(destination: DetailsView(foodItem: foodItem)) {
+        NavigationLink(destination: DetailsView(foodItem: foodItem).environmentObject(foodCartHolder)) {
             VStack(alignment: .leading) {
                 HStack {
                     Text(verbatim: foodItem.title)
@@ -68,7 +69,7 @@ struct FoodItemRowView: View {
 
     func addToCart() {
         print("\(self.foodItem.title) added")
-        
+        foodCartHolder.foodCarts.append(FoodCart(quantity: 1, foodItem: foodItem))
     }
 }
 

@@ -20,11 +20,11 @@ struct ContentView: View {
                     }
             }.tag(1)
 
-            OrderView()
+            SettingsView()
                 .tabItem {
                     VStack {
-                        Image(systemName: "cart")
-                        Text(verbatim: "Order")
+                        Image(systemName: "gear")
+                        Text(verbatim: "Settings")
                     }
             }.tag(2)
         }

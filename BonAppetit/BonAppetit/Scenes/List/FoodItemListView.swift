@@ -12,6 +12,9 @@ struct FoodItemListView: View {
 
     @State private var foodItems: [FoodItem] = FoodItem.demoFoodItems
     @State private var isFilteringFoodItems: Bool = false
+    @State private var showOrderView = false
+    @EnvironmentObject var userInfoHolder: UserInfoHolder
+    @EnvironmentObject var foodCartHolder: FoodCartHolder
 
     var body: some View {
         NavigationView {
@@ -23,7 +26,7 @@ struct FoodItemListView: View {
 
                 ForEach(foodItems) { foodItem in
                     if !self.isFilteringFoodItems || foodItem.reaction == .love {
-                        FoodItemRowView(foodItem: foodItem)
+                        FoodItemRowView(foodItem: foodItem)                    .environmentObject(self.foodCartHolder)
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
@@ -31,16 +34,19 @@ struct FoodItemListView: View {
             .navigationBarTitle(Text(verbatim: "Bon Appetit"))
             .navigationBarItems(
                 trailing: Button(action: {
-                    // Actions
+                    self.showOrderView = true
                 }, label: {
                     HStack {
-                        Image(systemName: "bag")
-                        Text("1")
+                        Image(systemName: "cart")
+                        Text("\(self.foodCartHolder.foodCarts.count)")
                     }
                 })
-            )
+            ).sheet(isPresented: self.$showOrderView) {
+                OrderView()
+                    .environmentObject(self.userInfoHolder)
+                    .environmentObject(self.foodCartHolder)
+            }
         }
-
     }
 }
 

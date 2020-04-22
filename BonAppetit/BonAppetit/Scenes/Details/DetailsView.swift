@@ -11,6 +11,8 @@ import SwiftUI
 struct DetailsView: View {
 
     @ObservedObject var foodItem: FoodItem
+    @State private var showOrderView = false
+    @EnvironmentObject var foodCartHolder: FoodCartHolder
 
     var body: some View {
         GeometryReader { proxy in
@@ -18,7 +20,7 @@ struct DetailsView: View {
                 Image(self.foodItem.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all)
 
                 VStack() {
                     HStack {
@@ -32,7 +34,7 @@ struct DetailsView: View {
                     Spacer()
 
                     Button(action: {
-                        print("Cart")
+                        self.addToCart()
                     }) {
                         HStack {
                             Image(systemName: "cart.badge.plus")
@@ -46,7 +48,27 @@ struct DetailsView: View {
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height)
             }
-        }.navigationBarTitle(Text(foodItem.title), displayMode: .inline)
+        }
+        .navigationBarTitle(Text(foodItem.title), displayMode: .inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.showOrderView = true
+            }, label: {
+                HStack {
+                    Image(systemName: "cart")
+                    Text("\(self.foodCartHolder.foodCarts.count)")
+                }
+            })
+        ).sheet(isPresented: self.$showOrderView) {
+            OrderView()
+                .environmentObject(UserInfoHolder())
+                .environmentObject(self.foodCartHolder)
+        }
+    }
+
+    func addToCart() {
+        print("\(self.foodItem.title) added")
+        foodCartHolder.foodCarts.append(FoodCart(quantity: 1, foodItem: foodItem))
     }
 }
 
