@@ -10,6 +10,9 @@
 		DD124C63244F9F0E008A50EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD124C62244F9F0E008A50EB /* SettingsView.swift */; };
 		DD124C6524504189008A50EB /* UserInfoHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD124C6424504189008A50EB /* UserInfoHolder.swift */; };
 		DD124C6724506B55008A50EB /* FoodCartHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD124C6624506B55008A50EB /* FoodCartHolder.swift */; };
+		DD124C6C24532ED2008A50EB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD124C6B24532ED2008A50EB /* Colors.xcassets */; };
+		DD124C6E24533189008A50EB /* Colors+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD124C6D24533189008A50EB /* Colors+Extension.swift */; };
+		DD124C70245370FF008A50EB /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD124C6F245370FF008A50EB /* Bag.swift */; };
 		DD89EA032447905800E9F9D8 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA022447905800E9F9D8 /* OrderView.swift */; };
 		DD89EA052447973D00E9F9D8 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA042447973D00E9F9D8 /* DetailsView.swift */; };
 		DD89EA0724483FC100E9F9D8 /* TextInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89EA0624483FC100E9F9D8 /* TextInCircleView.swift */; };
@@ -28,6 +31,9 @@
 		DD124C62244F9F0E008A50EB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DD124C6424504189008A50EB /* UserInfoHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHolder.swift; sourceTree = "<group>"; };
 		DD124C6624506B55008A50EB /* FoodCartHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCartHolder.swift; sourceTree = "<group>"; };
+		DD124C6B24532ED2008A50EB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		DD124C6D24533189008A50EB /* Colors+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Extension.swift"; sourceTree = "<group>"; };
+		DD124C6F245370FF008A50EB /* Bag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		DD89EA022447905800E9F9D8 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		DD89EA042447973D00E9F9D8 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		DD89EA0624483FC100E9F9D8 /* TextInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInCircleView.swift; sourceTree = "<group>"; };
@@ -63,6 +69,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		DD124C712453B5FF008A50EB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DD124C6D24533189008A50EB /* Colors+Extension.swift */,
+				DD124C6F245370FF008A50EB /* Bag.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		DD8D4AB52445403F00726D90 = {
 			isa = PBXGroup;
 			children = (
@@ -82,15 +97,17 @@
 		DD8D4AC02445403F00726D90 /* BonAppetit */ = {
 			isa = PBXGroup;
 			children = (
-				DD8D4AD6244545BB00726D90 /* Scenes */,
-				DD8D4AD5244544B400726D90 /* Models */,
-				DD8D4AC12445403F00726D90 /* AppDelegate.swift */,
-				DD8D4AC32445403F00726D90 /* SceneDelegate.swift */,
-				DD8D4AC52445403F00726D90 /* ContentView.swift */,
-				DD8D4AC72445404000726D90 /* Assets.xcassets */,
-				DD8D4ACC2445404000726D90 /* LaunchScreen.storyboard */,
 				DD8D4ACF2445404000726D90 /* Info.plist */,
+				DD8D4AC12445403F00726D90 /* AppDelegate.swift */,
+				DD8D4AC52445403F00726D90 /* ContentView.swift */,
+				DD8D4AC32445403F00726D90 /* SceneDelegate.swift */,
+				DD8D4AC72445404000726D90 /* Assets.xcassets */,
+				DD124C6B24532ED2008A50EB /* Colors.xcassets */,
+				DD8D4ACC2445404000726D90 /* LaunchScreen.storyboard */,
+				DD8D4AD5244544B400726D90 /* Models */,
 				DD8D4AC92445404000726D90 /* Preview Content */,
+				DD8D4AD6244545BB00726D90 /* Scenes */,
+				DD124C712453B5FF008A50EB /* Utilities */,
 			);
 			path = BonAppetit;
 			sourceTree = "<group>";
@@ -209,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD8D4ACE2445404000726D90 /* LaunchScreen.storyboard in Resources */,
+				DD124C6C24532ED2008A50EB /* Colors.xcassets in Resources */,
 				DD8D4ACB2445404000726D90 /* Preview Assets.xcassets in Resources */,
 				DD8D4AC82445404000726D90 /* Assets.xcassets in Resources */,
 			);
@@ -221,7 +239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD124C6E24533189008A50EB /* Colors+Extension.swift in Sources */,
 				DD8D4AE0244653B100726D90 /* FoodItemRowView.swift in Sources */,
+				DD124C70245370FF008A50EB /* Bag.swift in Sources */,
 				DD8D4ADC244639AE00726D90 /* FoodItem.swift in Sources */,
 				DD8D4AC22445403F00726D90 /* AppDelegate.swift in Sources */,
 				DD124C6724506B55008A50EB /* FoodCartHolder.swift in Sources */,

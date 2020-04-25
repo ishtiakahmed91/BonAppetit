@@ -27,14 +27,15 @@ struct FoodItemRowView: View {
                     Text(verbatim: "\(foodItem.price) €")
                         .font(.title)
                         .fontWeight(.thin)
-                        .foregroundColor(.orange)
+                        .foregroundColor(.baOrange)
 
                     Button(action: {
                         self.addToCart()
                     }, label: {
                         Image(systemName: "cart.badge.plus")
-                            .renderingMode(.original)
+                            .foregroundColor(.baOrange)
                     })
+
                 }
                 .padding(.top, 10)
 
@@ -47,7 +48,7 @@ struct FoodItemRowView: View {
 
                 HStack {
                     Image(systemName: "person.crop.square")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.baOrange)
 
                     Text(verbatim: "\(foodItem.amount) serving")
                         .font(.body)
@@ -69,7 +70,7 @@ struct FoodItemRowView: View {
 
     func addToCart() {
         print("\(self.foodItem.title) added")
-        foodCartHolder.foodCarts.append(FoodCart(quantity: 1, foodItem: foodItem))
+        foodCartHolder.foodCart.add(self.foodItem)
     }
 }
 

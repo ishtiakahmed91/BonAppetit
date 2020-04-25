@@ -9,12 +9,13 @@
 import SwiftUI
 import Combine
 
-struct FoodCart: Identifiable {
-    var id = UUID()
-    var quantity = 0
+class FoodCartHolder: ObservableObject, Identifiable {
+    @Published var foodCart = Bag<FoodItem>()
+}
+
+struct FoodCartItem: Identifiable {
+    var id: ObjectIdentifier
+    var quantity: Int
     var foodItem: FoodItem
 }
 
-class FoodCartHolder: ObservableObject, Identifiable {
-    @Published var foodCarts: [FoodCart] = []
-}

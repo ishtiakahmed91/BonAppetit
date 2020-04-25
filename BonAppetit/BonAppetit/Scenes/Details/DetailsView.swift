@@ -11,8 +11,8 @@ import SwiftUI
 struct DetailsView: View {
 
     @ObservedObject var foodItem: FoodItem
-    @State private var showOrderView = false
     @EnvironmentObject var foodCartHolder: FoodCartHolder
+    @State private var showOrderView = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -41,7 +41,7 @@ struct DetailsView: View {
                             Text("Add to food cart")
                         }
                         .padding(20)
-                        .background(Color.orange)
+                        .background(Color.baOrange)
                         .foregroundColor(.white)
                         .cornerRadius(40)
                     }.padding()
@@ -56,7 +56,9 @@ struct DetailsView: View {
             }, label: {
                 HStack {
                     Image(systemName: "cart")
-                    Text("\(self.foodCartHolder.foodCarts.count)")
+                    if !self.foodCartHolder.foodCart.isEmpty {
+                        Text("\(self.foodCartHolder.foodCart.totalCount)")
+                    }
                 }
             })
         ).sheet(isPresented: self.$showOrderView) {
@@ -68,7 +70,7 @@ struct DetailsView: View {
 
     func addToCart() {
         print("\(self.foodItem.title) added")
-        foodCartHolder.foodCarts.append(FoodCart(quantity: 1, foodItem: foodItem))
+        foodCartHolder.foodCart.add(self.foodItem)
     }
 }
 

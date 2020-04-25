@@ -44,13 +44,24 @@ class FoodItem: Identifiable, ObservableObject {
     }
 }
 
+extension FoodItem: Hashable {
+    // Function for Bag
+    static func == (lhs: FoodItem, rhs: FoodItem) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
+    var hashValue: Int {
+        return ObjectIdentifier(self).hashValue
+    }
+}
+
 extension FoodItem {
     static let demoFoodItems = [
-        FoodItem(imageName: "1", title: "Kacchi Biriyani", price: 28, amount: 3, isLoved: false, reaction: Reaction.allCases.randomElement()!),
+        FoodItem(imageName: "5", title: "Beef Burger", price: 15, amount: 1, isLoved: false, reaction: Reaction.allCases.randomElement()!),
+        FoodItem(imageName: "1", title: "Morog Polao", price: 28, amount: 3, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "2", title: "Fresh Salad", price: 6, amount: 1, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "3", title: "Mozarella Pizza", price: 12, amount: 1, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "4", title: "Pan Cake", price: 14, amount: 2, isLoved: true, reaction: Reaction.allCases.randomElement()!),
-        FoodItem(imageName: "5", title: "Beef Burger", price: 15, amount: 1, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "6", title: "Mutton Chop", price: 22, amount: 2, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "7", title: "Momo Salad", price: 7, amount: 1, isLoved: false, reaction: Reaction.allCases.randomElement()!),
         FoodItem(imageName: "8", title: "Grilled Pizza", price: 14, amount: 2, isLoved: true, reaction: Reaction.allCases.randomElement()!),

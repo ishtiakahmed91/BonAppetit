@@ -17,13 +17,14 @@ struct TextInCircleView: View {
                 .frame(width: diameter, height: diameter)
                 .foregroundColor(.black)
                 .opacity(0.4)
+                .animation(.default)
+
             Text(verbatim: text)
                 .font(.title)
                 .fontWeight(.light)
                 .foregroundColor(Color.white)
         }
         .shadow(radius: 20)
-
     }
 }
 

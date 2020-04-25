@@ -16,21 +16,24 @@ struct FoodItemListView: View {
     @EnvironmentObject var userInfoHolder: UserInfoHolder
     @EnvironmentObject var foodCartHolder: FoodCartHolder
 
+
     var body: some View {
         NavigationView {
             List {
                 Toggle(isOn: $isFilteringFoodItems) {
                     Text(verbatim: "Show loved foods")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.baOrange)
                 }
 
                 ForEach(foodItems) { foodItem in
                     if !self.isFilteringFoodItems || foodItem.reaction == .love {
-                        FoodItemRowView(foodItem: foodItem)                    .environmentObject(self.foodCartHolder)
+                        FoodItemRowView(foodItem: foodItem)
+                            .environmentObject(self.foodCartHolder)
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }
+            .animation(.easeIn)
             .navigationBarTitle(Text(verbatim: "Bon Appetit"))
             .navigationBarItems(
                 trailing: Button(action: {
@@ -38,7 +41,9 @@ struct FoodItemListView: View {
                 }, label: {
                     HStack {
                         Image(systemName: "cart")
-                        Text("\(self.foodCartHolder.foodCarts.count)")
+                        if !self.foodCartHolder.foodCart.isEmpty {
+                            Text("\(self.foodCartHolder.foodCart.totalCount)")
+                        }
                     }
                 })
             ).sheet(isPresented: self.$showOrderView) {

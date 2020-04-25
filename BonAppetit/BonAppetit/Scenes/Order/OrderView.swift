@@ -13,7 +13,6 @@ struct OrderView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userInfoHolder: UserInfoHolder
     @EnvironmentObject var foodCartHolder: FoodCartHolder
-    @State var numberOfItems: Int = 0
 
     var isShippingAddressInfoAvaialable: Bool {
         return !userInfoHolder.userInfo.streetAndHouseNumber.isEmpty && !userInfoHolder.userInfo.city.isEmpty && !userInfoHolder.userInfo.postCode.isEmpty
@@ -51,108 +50,119 @@ struct OrderView: View {
     }
 
     var totalAmount: Int {
-        return foodCartHolder.foodCarts.reduce(0) { $0 + ($1.foodItem.price * $1.quantity) }
+        return foodCartItems.reduce(0) { $0 + ($1.foodItem.price * $1.quantity) }
+    }
+
+    var foodCartItems: [FoodCartItem] {
+        return foodCartHolder.foodCart.map { (foodItem: FoodItem, count: Int) -> FoodCartItem in
+            return FoodCartItem(id: foodItem.id, quantity: count, foodItem: foodItem)
+        }
     }
 
     var body: some View {
         ZStack {
-            Color.orange.edgesIgnoringSafeArea(.all)
+            Color.baOrange.edgesIgnoringSafeArea(.all)
 
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Total Amount")
-                            .font(.title)
-                        Text("Number of Items \(foodCartHolder.foodCarts.count)")
-                            .font(.footnote)
-                    }
-                    Text("\(totalAmount) €")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.black)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+            if self.foodCartHolder.foodCart.count == 0 {
+                VStack {
+                    Image(systemName: "wind")
+                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                    Text("Your order list is empty!")
                 }
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-
-                Divider()
-                ScrollView {
-                    ForEach(foodCartHolder.foodCarts) { item in
-                        HStack() {
-                            Image(item.foodItem.imageName)
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .clipShape(Circle())
-                                .shadow(radius: 5)
-
-                            VStack(alignment: .leading)  {
-                                Text("\(item.foodItem.title)")
-                                Text("\(item.foodItem.price) €")
-                                Text("Quantity \(item.quantity)")
-                            }
-                            
-                            Stepper(value: self.$numberOfItems, in: 0...10, label: {
-                                EmptyView()
-                            })
-
-                            Spacer()
-
-                            Text("\(item.quantity * item.foodItem.price) €")
+            } else {
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Total Amount")
                                 .font(.title)
-                                .foregroundColor(Color.black)
+                            Text("Number of Items \(foodCartHolder.foodCart.count)")
+                                .font(.footnote)
                         }
-                        .padding([.leading, .trailing])
+                        Text("\(totalAmount) €")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.black)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                }
-
-                Divider()
-                if isShippingAddressInfoAvaialable {
-                    HStack() {
-                        Image(systemName: "location").padding()
-                        VStack(alignment: .leading) {
-                            Text("\(userInfoHolder.userInfo.streetAndHouseNumber)")
-                            Text("\(userInfoHolder.userInfo.postCode) \(userInfoHolder.userInfo.city)")
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.leading, .trailing])
-                }
-
-                if isPaymentInfoAvaialable {
-                    HStack() {
-                        Image(systemName: "creditcard").padding()
-                        VStack(alignment: .leading) {
-                            Text("\(paymentInfo.0)")
-                            Text("\(paymentInfo.1)")
-                        }
-                    }
+                    .foregroundColor(.white)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                }
 
-                if !isPaymentInfoAvaialable || !isShippingAddressInfoAvaialable {
-                    Text("To proceed the order please update\(orderInstruction) ")
-                        .font(.footnote)
-                        .padding()
-                }
+                    Divider()
+                    ScrollView {
+                        ForEach(foodCartItems) { item in
+                            HStack() {
+                                Image(item.foodItem.imageName)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 5)
 
-                Spacer()
+                                VStack(alignment: .leading)  {
+                                    Text("\(item.foodItem.title)")
+                                    Text("\(item.foodItem.price) €")
+                                    Text("Quantity \(item.quantity)")
+                                }
 
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image(systemName: "arrow.turn.down.right")
-                        Text("Order Now")
+                                Spacer()
+
+                                Text("\(item.quantity * item.foodItem.price) €")
+                                    .font(.title)
+                                    .foregroundColor(Color.black)
+                                    .frame(width: 80.0)
+                            }
+                            .padding([.leading, .trailing])
+                        }
                     }
-                    .padding(20)
-                    .background(Color.white)
-                    .opacity(orderButtonOpacity)
-                    .foregroundColor(.orange)
-                    .cornerRadius(40)
-                }.disabled(isOrderButtonDisable)
+
+                    Divider()
+                    if isShippingAddressInfoAvaialable {
+                        HStack() {
+                            Image(systemName: "location").padding()
+                            VStack(alignment: .leading) {
+                                Text("\(userInfoHolder.userInfo.streetAndHouseNumber)")
+                                Text("\(userInfoHolder.userInfo.postCode) \(userInfoHolder.userInfo.city)")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding([.leading, .trailing])
+                    }
+
+                    if isPaymentInfoAvaialable {
+                        HStack() {
+                            Image(systemName: "creditcard").padding()
+                            VStack(alignment: .leading) {
+                                Text("\(paymentInfo.0)")
+                                Text("\(paymentInfo.1)")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                    }
+
+                    if !isPaymentInfoAvaialable || !isShippingAddressInfoAvaialable {
+                        Text("To proceed the order please update\(orderInstruction) ")
+                            .font(.footnote)
+                            .padding()
+                    }
+
+                    Spacer()
+
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.turn.down.right")
+                            Text("Order Now")
+                        }
+                        .padding(20)
+                        .background(Color.white)
+                        .opacity(orderButtonOpacity)
+                        .foregroundColor(.baOrange)
+                        .cornerRadius(40)
+                    }.disabled(isOrderButtonDisable)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
 }
