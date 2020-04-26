@@ -90,53 +90,24 @@ struct OrderView: View {
                     Divider()
                     ScrollView {
                         ForEach(foodCartItems) { item in
-                            HStack() {
-                                Image(item.foodItem.imageName)
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 5)
-
-                                VStack(alignment: .leading)  {
-                                    Text("\(item.foodItem.title)")
-                                    Text("\(item.foodItem.price) €")
-                                    Text("Quantity \(item.quantity)")
-                                }
-
-                                Spacer()
-
-                                Text("\(item.quantity * item.foodItem.price) €")
-                                    .font(.title)
-                                    .foregroundColor(Color.black)
-                                    .frame(width: 80.0)
-                            }
-                            .padding([.leading, .trailing])
+                            OrderRow(imageName: item.foodItem.imageName,
+                                     title: item.foodItem.title,
+                                     price: item.foodItem.price,
+                                     quantity: item.quantity)
                         }
                     }
 
                     Divider()
                     if isShippingAddressInfoAvaialable {
-                        HStack() {
-                            Image(systemName: "location").padding()
-                            VStack(alignment: .leading) {
-                                Text("\(userInfoHolder.userInfo.streetAndHouseNumber)")
-                                Text("\(userInfoHolder.userInfo.postCode) \(userInfoHolder.userInfo.city)")
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding([.leading, .trailing])
+                        UserInfoRow(imageName: "location",
+                                    title: "\(userInfoHolder.userInfo.streetAndHouseNumber)",
+                            subtitle: "\(userInfoHolder.userInfo.postCode) \(userInfoHolder.userInfo.city)")
                     }
 
                     if isPaymentInfoAvaialable {
-                        HStack() {
-                            Image(systemName: "creditcard").padding()
-                            VStack(alignment: .leading) {
-                                Text("\(paymentInfo.0)")
-                                Text("\(paymentInfo.1)")
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
+                        UserInfoRow(imageName: "creditcard",
+                                    title: paymentInfo.0,
+                                    subtitle: paymentInfo.1)
                     }
 
                     if !isPaymentInfoAvaialable || !isShippingAddressInfoAvaialable {
@@ -167,8 +138,10 @@ struct OrderView: View {
     }
 }
 
+#if DEBUG
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
         OrderView()
     }
 }
+#endif

@@ -74,8 +74,10 @@ struct DetailsView: View {
     }
 }
 
+#if DEBUG
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(foodItem: FoodItem.demoFoodItems.randomElement()!)
     }
 }
+#endif
